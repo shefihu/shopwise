@@ -356,7 +356,7 @@ const Navbar = () => {
               id="mobile-menu"
               className={`${
                 showMenu ? "flex" : "hidden"
-              } absolute dark:bg-gray-900 z-20 bg-white inset-0 md:hidden  flex-col h-80 w-full`}
+              } absolute dark:bg-gray-900 z-20 bg-gray-100 inset-0 md:hidden  flex-col h-80 w-full`}
             >
               <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-4 p-4">
                 <div className="flex items-center space-x-3">
