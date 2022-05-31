@@ -314,7 +314,7 @@ const Navbar = () => {
                     <button
                       aria-label="open menu"
                       onClick={() => setShowMenu(true)}
-                      className="text-black dark:text-white dark:hover:text-gray-300 md:hidden focus:outline-none focus:ring-2 rounded focus:ring-gray-600"
+                      className=" dark:text-white dark:hover:text-gray-300 md:hidden focus:outline-none focus:ring-2 rounded focus:ring-gray-600"
                     >
                       <svg
                         className="fill-stroke"
@@ -356,7 +356,7 @@ const Navbar = () => {
               id="mobile-menu"
               className={`${
                 showMenu ? "flex" : "hidden"
-              } absolute dark:bg-gray-900 z-20 inset-0 md:hidden bg-white flex-col h-80 w-full`}
+              } absolute dark:bg-gray-900 z-20 bg-white inset-0 md:hidden  flex-col h-80 w-full`}
             >
               <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-4 p-4">
                 <div className="flex items-center space-x-3">
