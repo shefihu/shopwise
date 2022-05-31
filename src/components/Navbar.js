@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <div>
       {" "}
-      <div className="dark:bg-gray-900">
+      <div className="bg-gray-900">
         <div>
           <div className="relative">
             {/* For md screen size */}
