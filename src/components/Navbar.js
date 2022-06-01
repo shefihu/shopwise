@@ -1,10 +1,30 @@
-import React, { useState } from "react";
-
+import React, { Suspense, useState } from "react";
+import { Img, useImage } from "react-image";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { signingOut } from "../firebase/config";
+import { logout } from "../store/actions/userActions";
+import EmptyImage from "../assets/svg/user.svg";
 const Navbar = () => {
   const [searchInput, setSearchInput] = useState(true);
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
+  const LoginPage = () => {
+    navigate("/login");
+  };
+  const RegisterPage = () => {
+    navigate("/register");
+  };
+  const dispatch = useDispatch();
+  const Authed = useSelector((state) => state.auth);
+  // function MyImageComponent() {
+  //   const { src } = useImage({
+  //     srcList: Authed.currentUser.photoURL,
+  //   });
 
+  //   return <img src={src} className="w-14 h-14 rounded-full" alt="" />;
+  // }
   return (
     <div>
       {" "}
@@ -232,12 +252,66 @@ const Navbar = () => {
                         />
                       </svg>
                     </button> */}
-                    <button className="w-24 bg-green-300 text-white font-bold h-10 rounded-2xl ">
-                      Sign Up
-                    </button>
-                    <button className="w-24 bg-green-300 text-white font-bold h-10 rounded-2xl ">
-                      Sign In
-                    </button>
+                    {console.log(Authed)}
+                    {Authed.currentUser === null ? (
+                      <>
+                        <button
+                          onClick={RegisterPage}
+                          className="w-24 bg-green-300 text-white font-bold h-10 rounded-2xl "
+                        >
+                          Sign Up
+                        </button>
+                        <button
+                          onClick={LoginPage}
+                          className="w-24 bg-green-300 text-white font-bold h-10 rounded-2xl "
+                        >
+                          Sign In
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        {/* <h1>{Authed.currentUser.displayName}</h1> */}
+                        {/* <h1 className="">{Authed.currentUser?.photoURL}</h1> */}
+                        {/* <div className="rounded-full">
+                          <MyImageComponent />
+                        </div> */}
+                        {/* {console.log(MyImageComponent)} */}
+                        {Authed.currentUser?.photoURL == null ? (
+                          <>
+                            <img
+                              className="h-12 w-12"
+                              src={EmptyImage}
+                              alt="yeah"
+                            />
+                          </>
+                        ) : (
+                          <>
+                            <div className="rounded-full">
+                              {/* <Suspense>
+                                <MyImageComponent />
+                              </Suspense> */}
+                              <img
+                                className="w-14 h-14 rounded-full"
+                                src={Authed.currentUser.photoURL}
+                                alt="rr"
+                              />
+                              {/* <h1>{Authed.currentUser.photoURL}</h1> */}
+                            </div>
+                          </>
+                        )}
+
+                        <button
+                          onClick={() => {
+                            signingOut();
+                            dispatch(logout());
+                          }}
+                          className="w-24 bg-green-300 text-white font-bold h-10 rounded-2xl "
+                        >
+                          Logout
+                        </button>
+                      </>
+                    )}
+
                     {/* <button
                       aria-label="go to cart"
                       className="text-gray-800 dark:hover:text-gray-300 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-800"
@@ -391,6 +465,7 @@ const Navbar = () => {
                     className="text-sm dark:bg-gray-900 text-gray-600 placeholder-gray-600 dark:placeholder-gray-300 focus:outline-none"
                   />
                 </div>
+
                 <button
                   onClick={() => setShowMenu(false)}
                   aria-label="close menu"
@@ -418,6 +493,25 @@ const Navbar = () => {
                     />
                   </svg>
                 </button>
+                {Authed.currentUser?.photoURL == null ? (
+                  <>
+                    <img className="h-6 w-6" src={EmptyImage} alt="yeah" />
+                  </>
+                ) : (
+                  <>
+                    <div className="rounded-full">
+                      {/* <Suspense>
+                                <MyImageComponent />
+                              </Suspense> */}
+                      <img
+                        className="w-6 h-6 rounded-full"
+                        src={Authed.currentUser.photoURL}
+                        alt="rr"
+                      />
+                      {/* <h1>{Authed.currentUser.photoURL}</h1> */}
+                    </div>
+                  </>
+                )}
               </div>
               <div className="mt-6 p-4">
                 <ul className="flex flex-col space-y-6">
@@ -528,25 +622,50 @@ const Navbar = () => {
                 </ul>
               </div>
               <div className="h-full flex items-end">
-                <ul className="flex flex-col justify-center items-center space-y-8 bg-gray-50 w-full py-10 p-4 dark:bg-gray-800">
-                  <li>
-                    <a
-                      href="#"
-                      className="dark:text-white text-gray-800 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
-                    >
-                      <div>
+                {Authed.currentUser === null ? (
+                  <>
+                    <ul className="flex flex-col justify-center items-center space-y-8 bg-gray-50 w-full py-10 p-4 dark:bg-gray-800">
+                      <li>
+                        <a
+                          href="#"
+                          className="dark:text-white text-gray-800 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
+                        >
+                          <div>
+                            <button className="w-60 bg-green-300 text-white font-bold h-10 rounded-3xl">
+                              Sign Up
+                            </button>
+                          </div>
+                        </a>
+                      </li>
+                      <li>
                         <button className="w-60 bg-green-300 text-white font-bold h-10 rounded-3xl">
-                          Sign Up
+                          Sign In
                         </button>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <button className="w-60 bg-green-300 text-white font-bold h-10 rounded-3xl">
-                      Sign In
-                    </button>
-                  </li>
-                </ul>
+                      </li>
+                    </ul>
+                  </>
+                ) : (
+                  <>
+                    <ul className="flex flex-col justify-center items-center space-y-8 bg-gray-50 w-full py-10 p-4 dark:bg-gray-800">
+                      <li>
+                        <a
+                          onClick={() => {
+                            signingOut();
+                            dispatch(logout());
+                          }}
+                          href="#"
+                          className="dark:text-white text-gray-800 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
+                        >
+                          <div>
+                            <button className="w-60 bg-green-300 text-white font-bold h-10 rounded-3xl">
+                              Log Out
+                            </button>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </>
+                )}
               </div>
             </div>
           </div>
