@@ -30,10 +30,10 @@ const auth = getAuth();
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-// provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
-// provider.setCustomParameters({
-//   login_hint: "user@example.com",
-// });
+provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
+provider.setCustomParameters({
+  login_hint: "user@example.com",
+});
 export const AddToStore = async (user) => {
   const data = {
     uid: user.uid,

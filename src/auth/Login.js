@@ -1,7 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import { Formik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import {
   auth,
@@ -15,6 +15,7 @@ import isAuthed from "../routes/isAuthed";
 // import isAuthed from "../routes/isAuth";
 const Login = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   // const userCollection = collection(db, "users");
   // class UserService {
   //   addUser = (newUser) => {
@@ -173,6 +174,7 @@ const Login = () => {
                 const email = values.email;
                 const password = values.password;
                 signInWithEmail(email, password);
+                setLoading(true);
               }}
             >
               {({
@@ -236,13 +238,29 @@ const Login = () => {
                     </p>
                   </div>
                   <div className="mt-8">
-                    <button
-                      type="submit"
-                      aria-label="create my account"
-                      className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full"
-                    >
-                      Create my account
-                    </button>
+                    {!loading && (
+                      <>
+                        <button
+                          type="submit"
+                          aria-label="create my account"
+                          className="focus:ring-2 focus:ring-offset-2 focus:ring-greem-700 text-sm font-semibold leading-none text-white focus:outline-none bg-green-400 border rounded hover:bg-green-600 py-4 w-full"
+                        >
+                          Create my account
+                        </button>
+                      </>
+                    )}{" "}
+                    {loading && (
+                      <>
+                        <button
+                          type="submit"
+                          aria-label="create my account"
+                          disabled
+                          className="focus:ring-2 flex justify-center focus:ring-offset-2 focus:ring-green-700 text-sm font-semibold leading-none text-white focus:outline-none bg-green-400 border rounded hover:bg-green-600 py-4 w-full"
+                        >
+                          <div className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-white dark:border-green-400"></div>
+                        </button>
+                      </>
+                    )}
                   </div>
                 </form>
               )}

@@ -652,6 +652,7 @@ const Navbar = () => {
                           onClick={() => {
                             signingOut();
                             dispatch(logout());
+                            setShowMenu(false);
                           }}
                           href="#"
                           className="dark:text-white text-gray-800 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
