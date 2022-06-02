@@ -4,6 +4,7 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Navbar from "./components/Navbar";
 import ScrolltoTop from "./components/ScrolltoTop";
+import Callbac from "./page/Callbac";
 import Home from "./page/Home";
 // import auth from "./firebase/utils";
 function App() {
@@ -24,6 +25,7 @@ function App() {
           }
         />
 
+        <Route path="callback" element={<Callbac />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
       </Routes>
