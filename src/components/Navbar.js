@@ -19,7 +19,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const Authed = useSelector((state) => state.auth);
   // function MyImageComponent() {
-  //   const { src } = useImage({
+  //   const { src } = useImage({bg-slate-500
   //     srcList: Authed.currentUser.photoURL,
   //   });
 
@@ -159,7 +159,7 @@ const Navbar = () => {
                 <ul className="hidden w-8/12 md:flex items-center justify-center space-x-8">
                   <li>
                     <a
-                      href="#"
+                      href="/"
                       className="dark:text-white text-base text-gray-800 font-bold text-xl  hover:text-green-300"
                     >
                       Home
@@ -175,7 +175,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="/products"
                       className="dark:text-white text-base text-gray-800 font-bold  text-xl  hover:text-green-300"
                     >
                       Shop
@@ -190,7 +190,7 @@ const Navbar = () => {
                     </a>
                   </li>
                 </ul>
-                <div className="md:w-2/12 justify-end flex items-center space-x-4 xl:space-x-8">
+                <div className="w-2/5  justify-end flex items-center space-x-4 xl:space-x-8">
                   <div className="hidden lg:flex items-center">
                     <button
                       onClick={() => setSearchInput(!searchInput)}
@@ -517,7 +517,7 @@ const Navbar = () => {
                 <ul className="flex flex-col space-y-6">
                   <li>
                     <a
-                      href="#"
+                      href="/"
                       className="dark:text-white flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"
                     >
                       Home
@@ -569,7 +569,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="/products"
                       className="dark:text-white flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"
                     >
                       Shop

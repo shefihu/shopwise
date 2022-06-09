@@ -1,50 +1,52 @@
 import React, { useState } from "react";
+import { product } from "../data/Products";
 import Modal from "./Modal";
-
+// import product from "../data/Products";
 const ProductList = () => {
-  const products = [
-    {
-      id: 1,
-      name: "Earthen Bottle",
-      href: "#",
-      price: "$48",
-      imageSrc:
-        "https://images.unsplash.com/photo-1603921326210-6edd2d60ca68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1026&q=80",
-      imageAlt:
-        "Tall slender porcelain bottle with natural clay textured body and cork stopper.",
-    },
-    {
-      id: 2,
-      name: "Nomad Tumbler",
-      href: "#",
-      price: "$35",
-      imageSrc:
-        "https://images.unsplash.com/photo-1648905704296-4dfef2280350?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
-      imageAlt:
-        "Olive drab green insulated bottle with flared screw lid and flat top.",
-    },
-    {
-      id: 3,
-      name: "Focus Paper Refill",
-      href: "#",
-      price: "$89",
-      imageSrc:
-        "https://images.unsplash.com/photo-1644501618169-bab16b6e6efb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=732&q=80",
-      imageAlt:
-        "Person using a pen to cross a task off a productivity paper card.",
-    },
-    {
-      id: 4,
-      name: "Machined Mechanical Pencil",
-      href: "#",
-      price: "$35",
-      imageSrc:
-        "https://images.unsplash.com/photo-1634042148057-32603ec95d95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-      imageAlt:
-        "Hand holding black machined steel mechanical pencil with brass tip and top.",
-    },
-    // More products...
-  ];
+  // const products = [
+  //   {
+  //     id: 1,
+  //     name: "Earthen Bottle",
+  //     href: "#",
+  //     price: "$48",
+  //     imageSrc:
+  //       "https://images.unsplash.com/photo-1603921326210-6edd2d60ca68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1026&q=80",
+  //     imageAlt:
+  //       "Tall slender porcelain bottle with natural clay textured body and cork stopper.",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Nomad Tumbler",
+  //     href: "#",
+  //     price: "$35",
+  //     imageSrc:
+  //       "https://images.unsplash.com/photo-1648905704296-4dfef2280350?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
+  //     imageAlt:
+  //       "Olive drab green insulated bottle with flared screw lid and flat top.",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Focus Paper Refill",
+  //     href: "#",
+  //     price: "$89",
+  //     imageSrc:
+  //       "https://images.unsplash.com/photo-1644501618169-bab16b6e6efb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=732&q=80",
+  //     imageAlt:
+  //       "Person using a pen to cross a task off a productivity paper card.",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Machined Mechanical Pencil",
+  //     href: "#",
+  //     price: "$35",
+  //     imageSrc:
+  //       "https://images.unsplash.com/photo-1634042148057-32603ec95d95?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  //     imageAlt:
+  //       "Hand holding black machined steel mechanical pencil with brass tip and top.",
+  //   },
+  //   // More products...
+  // ];
+  const _products = product.slice(0, 4);
   return (
     <div className="w-full ">
       {/* <main className="my-8">
@@ -166,14 +168,14 @@ const ProductList = () => {
         <h2 className="sr-only">Products</h2>
 
         <div className="grid grid-cols-2 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          {products.map((product) => (
-            <div className=" bg-white rounded-lg">
+          {_products.map((product) => (
+            <div className=" bg-white rounded-lg h-40 lg:h-96">
               <a key={product.id} href={product.href}>
                 <div className="w-full aspect-w-1 aspect-h-1 bg-white rounded-t-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                   <img
-                    src={product.imageSrc}
+                    src={product.thumbnail}
                     alt={product.imageAlt}
-                    className="w-full lg:h-80 h-40 object-center object-cover group-hover:opacity-75"
+                    className="w-full lg:h-60 h-20 object-center object-cover group-hover:opacity-75"
                   />
                   <button className="lg:flex hidden justify-end ml-40 pt-14  w-40 text-white absolute">
                     <svg
@@ -190,10 +192,10 @@ const ProductList = () => {
                   </button>
                 </div>
               </a>
-              <h3 className="mt-4 lg:py-4 pl-4 text-sm text-gray-700">
+              <h3 className="mt-4 lg:py-4 pl-4 text-xs lg:text-sm text-gray-700">
                 {product.name}
               </h3>
-              <p className="mt-1 pl-4 lg:text-lg font-medium text-gray-900">
+              <p className="mt-1 pl-4 text-xs lg:text-lg font-medium text-gray-900">
                 {product.price}
               </p>
             </div>

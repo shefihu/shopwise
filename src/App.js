@@ -4,8 +4,10 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Navbar from "./components/Navbar";
 import ScrolltoTop from "./components/ScrolltoTop";
+import AllProducts from "./page/AllProducts";
 import Callbac from "./page/Callbac";
 import Home from "./page/Home";
+import SearchResults from "./page/SearchResults";
 // import auth from "./firebase/utils";
 function App() {
   const Authed = useSelector((state) => state.auth);
@@ -28,6 +30,8 @@ function App() {
         <Route path="callback" element={<Callbac />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="products" element={<AllProducts />} />
+        <Route path="searched" element={<SearchResults />} />
       </Routes>
       <ScrolltoTop />
     </div>
