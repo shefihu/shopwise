@@ -8,6 +8,7 @@ import AllProducts from "./page/AllProducts";
 import Callbac from "./page/Callbac";
 import Home from "./page/Home";
 import SearchResults from "./page/SearchResults";
+import SIngleProduct from "./page/SIngleProduct";
 // import auth from "./firebase/utils";
 function App() {
   const Authed = useSelector((state) => state.auth);
@@ -15,23 +16,17 @@ function App() {
     return Authed.currentUser ? children : <Navigate to="/login" />;
   };
   return (
-    <div className="App bg-gray-200">
+    <div className="App  bg-gray-200">
       <Navbar />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <RequireAuth>
-              <Home />
-            </RequireAuth>
-          }
-        />
+        <Route path="/" element={<Home />} />
 
         <Route path="callback" element={<Callbac />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="products" element={<AllProducts />} />
         <Route path="searched" element={<SearchResults />} />
+        <Route path="product" element={<SIngleProduct />} />
       </Routes>
       <ScrolltoTop />
     </div>

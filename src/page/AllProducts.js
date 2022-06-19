@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
+import { Link } from "react-router-dom";
 import { gaming, product } from "../data/Products";
 
 const AllProducts = () => {
@@ -18,7 +19,7 @@ const AllProducts = () => {
   };
   return (
     <div>
-      <div className="h-full container ">
+      <div className="h-full container pb-20">
         <div className="lg:h-40 h-32  flex items-center justify-between">
           <h1 className="lg:text-4xl text-sm font-bold ">All Products</h1>
           <div className="border-2 flex items-center justify-between border-green-300 w-20 h-10 lg:w-40 lg:h-14 rounded-xl cursor-pointer ">
@@ -37,8 +38,8 @@ const AllProducts = () => {
         </div>
         <div className="grid grid-cols-2 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {displayProducts.map((product) => (
-            <div className=" bg-white rounded-lg h-40 lg:h-96">
-              <a key={product.id} href={product.href}>
+            <div className=" bg-white rounded-lg h-48  lg:h-96">
+              <Link key={product.id} to={`/product?id=${product.id}`}>
                 <div className="w-full aspect-w-1 aspect-h-1 bg-white rounded-t-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                   <img
                     src={product.thumbnail}
@@ -59,7 +60,7 @@ const AllProducts = () => {
                     {/* <Modal /> */}
                   </button>
                 </div>
-              </a>
+              </Link>
               <h3 className="mt-4 lg:py-4 pl-4 text-xs lg:text-sm text-gray-700">
                 {product.name}
               </h3>

@@ -72,7 +72,7 @@ const Login = () => {
             <button
               onClick={CreateWithGoogle}
               aria-label="Continue with google"
-              role="button"
+              // role="button"
               className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10"
             >
               <svg
@@ -105,7 +105,7 @@ const Login = () => {
             </button>
             <button
               aria-label="Continue with github"
-              role="button"
+              // role="button"
               onClick={CreateWithGithub}
               className="focus:outline-none  focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-4"
             >
