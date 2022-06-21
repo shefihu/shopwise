@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 import { gaming, product } from "../data/Products";
@@ -17,12 +17,26 @@ const AllProducts = () => {
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
+  const prices = product.map((y) => y.price);
+
+  console.log(prices);
+  const moreforty = () => {
+    if (product.filter((x) => x.price > 40000)) {
+    }
+  };
+  console.log(filter);
+  // useEffect(() => {
+  //   moreforty();
+  // }, []);
   return (
     <div>
       <div className="h-full container pb-20">
         <div className="lg:h-40 h-32  flex items-center justify-between">
           <h1 className="lg:text-4xl text-sm font-bold ">All Products</h1>
-          <div className="border-2 flex items-center justify-between border-green-300 w-20 h-10 lg:w-40 lg:h-14 rounded-xl cursor-pointer ">
+          <div
+            onClick={moreforty}
+            className="border-2 flex items-center justify-between border-green-300 w-20 h-10 lg:w-40 lg:h-14 rounded-xl cursor-pointer "
+          >
             <h1 className="font-bold text-xs lg:text-lg mx-auto">Filter</h1>
             <svg
               xmlns="http://www.w3.org/2000/svg"

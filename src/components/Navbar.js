@@ -32,7 +32,7 @@ const Navbar = () => {
         <div>
           <div className="relative">
             {/* For md screen size */}
-            <div
+            {/* <div
               id="md-searchbar"
               className={`${
                 mdOptionsToggle ? "hidden" : "flex"
@@ -128,7 +128,7 @@ const Navbar = () => {
                   </svg>
                 </button>
               </div>
-            </div>
+            </div> */}
             {/* For md screen size */}
             {/* For large screens */}
             <div className="dark:bg-gray-900  bg-gray-50 px-6 py-9">
@@ -156,7 +156,7 @@ const Navbar = () => {
                     />
                   </svg> */}
                 </h1>
-                <ul className="hidden w-8/12 md:flex items-center justify-center space-x-8">
+                <ul className="hidden w-8/12 md:hidden items-center justify-center space-x-8">
                   <li>
                     <a
                       href="/"
@@ -349,7 +349,7 @@ const Navbar = () => {
                     </button> */}
                   </div>
                   <div className="flex lg:hidden">
-                    <button
+                    {/* <button
                       aria-label="show options"
                       onClick={() => setMdOptionsToggle(!mdOptionsToggle)}
                       className="text-black dark:text-white dark:hover:text-gray-300 hidden md:flex focus:outline-none focus:ring-2 rounded focus:ring-gray-600"
@@ -384,11 +384,11 @@ const Navbar = () => {
                           strokeLinejoin="round"
                         />
                       </svg>
-                    </button>
+                    </button> */}
                     <button
                       aria-label="open menu"
                       onClick={() => setShowMenu(true)}
-                      className=" dark:text-white dark:hover:text-gray-300 md:hidden focus:outline-none focus:ring-2 rounded focus:ring-gray-600"
+                      className=" dark:text-white dark:hover:text-gray-300  focus:outline-none focus:ring-2 rounded focus:ring-gray-600"
                     >
                       <svg
                         className="fill-stroke"
@@ -430,7 +430,7 @@ const Navbar = () => {
               id="mobile-menu"
               className={`${
                 showMenu ? "flex" : "hidden"
-              } absolute dark:bg-gray-900 z-20 bg-gray-100 inset-0 md:hidden  flex-col h-80 w-full`}
+              } absolute dark:bg-gray-900 z-20 bg-gray-100 inset-0  flex-col h-80 w-full`}
             >
               <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-4 p-4">
                 <div className="flex items-center space-x-3">

@@ -27,16 +27,16 @@ const SIngleProduct = () => {
 
   return (
     <div>
-      <section className="hidden lg:flex">
+      <section className="hidden w-screen xl:flex lg:flex">
         <div className="container  h-1/2  ">
-          <div className="flex justify-between mt-10  ">
+          <div className="flex w-full bg-slate-200 justify-between mt-10  ">
             <img
               src={_product.thumbnail}
               alt=""
               className=" w-5/12 rounded-2xl object-cover "
               style={{ height: "600px", width: "700px" }}
             />
-            <div className="  w-1/2 full flex justify-around  flex-col ">
+            <div className="  w-1/2 ml-10 flex justify-around  flex-col ">
               <h1 className="font-bold text-3xl "> {_product.name}</h1>
               <h2 className="font-extrabold text-4xl">{_product.price}</h2>
               <div>
@@ -151,21 +151,26 @@ const SIngleProduct = () => {
         </div>
       </section>
 
-      <section className="lg:hidden">
+      <section className="lg:hidden md:flex">
         <div className="container  h-full  ">
           <div className="flex flex-col justify-between mt-10   ">
             <img
               src={_product.thumbnail}
               alt=""
               className=" w-full rounded-2xl object-cover "
-              style={{ height: "300px", width: "700px" }}
+              style={{ height: "300px" }}
             />
-            <div className="  w-full mt-10 h-96  flex justify-between  flex-col ">
-              <h1 className="font-bold text-2xl "> {_product.name}</h1>
-              <h2 className="font-extrabold text-3xl">{_product.price}</h2>
+            <div className="  w-full mt-10 h-96   flex justify-between  flex-col ">
+              <h1 className="md:text-3xl md:ml-6 font-bold text-2xl ">
+                {" "}
+                {_product.name}
+              </h1>
+              <h2 className="md:text-4xl md:ml-6 font-extrabold text-3xl">
+                {_product.price}
+              </h2>
               <div>
-                <p className="font-bold">Color</p>
-                <div className="flex flex-row gap-6 mt-3  ">
+                <p className="font-bold md:ml-10">Color</p>
+                <div className=" flex flex-row gap-1 mt-3 md:ml-6   ">
                   {_product.image.map((color) => {
                     return (
                       <div>
@@ -189,7 +194,7 @@ const SIngleProduct = () => {
                       </div>
                     );
                   })}
-                  <div className="pb-10">
+                  <div className=" w-full md:flex justify-end pb-10 md:mr-6">
                     {/* <p>Quantity</p> */}
                     <div className="flex flex-row gap-6 ml-10 items-center">
                       <button
@@ -210,7 +215,7 @@ const SIngleProduct = () => {
                 </div>
               </div>
 
-              <div className="flex gap-6">
+              <div className="flex md:justify-center justify-between md:gap-40">
                 <button
                   className="btn rounded-xl bg-green-300 text-white text-lg font-bold h-14 w-40"
                   //   onClick={() => {
