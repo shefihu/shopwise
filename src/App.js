@@ -16,13 +16,6 @@ function App() {
   const RequireAuth = ({ children }) => {
     return Authed.currentUser ? children : <Navigate to="/login" />;
   };
-  const RequireAuthCart = ({ children }) => {
-    return Authed.currentUser ? (
-      <Navigate to="/cart" />
-    ) : (
-      <Navigate to="/login" />
-    );
-  };
   return (
     <div className="App  bg-gray-200">
       <Navbar />
@@ -38,9 +31,9 @@ function App() {
         <Route
           path="cart"
           element={
-            <RequireAuthCart>
+            <RequireAuth>
               <Cart />
-            </RequireAuthCart>
+            </RequireAuth>
           }
         />
       </Routes>
