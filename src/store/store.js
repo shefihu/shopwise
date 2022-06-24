@@ -1,9 +1,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
-import reducers from "./reducers/defaultReducer";
+import reducers, { initialstate } from "./reducers/defaultReducer";
 import thunk from "redux-thunk";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { composeWithDevTools } from "redux-devtools-extension";
+
 // import cart from "./reducers/cartReducer";
 
 // const persistConfig = {
@@ -18,5 +16,6 @@ const middleware = [thunk];
 export const store = createStore(
   // persistedReducer,
   reducers,
+  initialstate,
   composeEnhancer(applyMiddleware(...middleware))
 );

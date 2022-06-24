@@ -3,7 +3,7 @@ import React from "react";
 const AboutProduct = () => {
   return (
     <div className="w-screen flex">
-      <div className="mt-20 container   bg-green-300 flex flex-col justify-center  ">
+      <div className="mt-20 container    flex flex-col justify-center  ">
         <h1 className="font-extrabold text-2xl">About Items</h1>
         <p className="text-xl">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quam

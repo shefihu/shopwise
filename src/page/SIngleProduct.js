@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import AboutProduct from "../components/AboutProduct";
 import ProductList2 from "../components/ProductList2";
 import REviews from "../components/REviews";
 import { product } from "../data/Products";
+import { addToFav } from "../store/actions/cartaction";
 
 const SIngleProduct = () => {
   const location = useLocation();
@@ -12,7 +14,7 @@ const SIngleProduct = () => {
   //   const picture = new URLSearchParams(search).get("image");
   const _product = product.find((x) => x.id === id);
   const [quantity, setQuantity] = useState(1);
-
+  const dispatch = useDispatch();
   const Increment = () => {
     setQuantity(quantity + 1);
   };
@@ -24,7 +26,13 @@ const SIngleProduct = () => {
       setQuantity(quantity - 1);
     }
   };
-
+  const addTocart = (id, name, photo, price) => {
+    // console.log("power");
+    dispatch(addToFav(id, name, photo, price, quantity));
+  };
+  const power = () => {
+    console.log("power");
+  };
   return (
     <div>
       <section className="hidden w-screen xl:flex lg:flex">
@@ -88,32 +96,16 @@ const SIngleProduct = () => {
               </div>
               <div className="flex gap-6">
                 <button
-                  className="btn rounded-xl bg-green-300 text-white text-lg font-bold h-14 w-40"
-                  //   onClick={() => {
-                  //     const activeType = image[activeColor].picture;
-                  //     const activeTypeId = image[activeColor].id;
-                  //     const promising = new Promise((resolve) => {
-                  //       resolve(quantity * Number(sellingPrice));
-                  //     });
-                  //     promising
-                  //       .then((totalItemPrice) => {
-                  //         dispatch(
-                  //           AddToCart({
-                  //             quantity,
-                  //             id,
-                  //             name,
-                  //             activeType,
-                  //             activeTypeId,
-                  //             sellingPrice,
-                  //             originalPrice,
-                  //             totalItemPrice,
-                  //           })
-                  //         );
-                  //       })
-                  //       .then(() => {
-                  //         setOpenModal(!openModal);
-                  //       });
-                  //   }}
+                  className=" rounded-xl bg-green-300 text-white text-lg font-bold h-14 w-40"
+                  onClick={() => {
+                    addTocart(
+                      _product.id,
+                      _product.name,
+                      _product.thumbnail,
+                      _product.price,
+                      quantity
+                    );
+                  }}
                 >
                   Add to Cart
                 </button>
@@ -217,35 +209,20 @@ const SIngleProduct = () => {
 
               <div className="flex md:justify-center justify-between md:gap-40">
                 <button
-                  className="btn rounded-xl bg-green-300 text-white text-lg font-bold h-14 w-40"
-                  //   onClick={() => {
-                  //     const activeType = image[activeColor].picture;
-                  //     const activeTypeId = image[activeColor].id;
-                  //     const promising = new Promise((resolve) => {
-                  //       resolve(quantity * Number(sellingPrice));
-                  //     });
-                  //     promising
-                  //       .then((totalItemPrice) => {
-                  //         dispatch(
-                  //           AddToCart({
-                  //             quantity,
-                  //             id,
-                  //             name,
-                  //             activeType,
-                  //             activeTypeId,
-                  //             sellingPrice,
-                  //             originalPrice,
-                  //             totalItemPrice,
-                  //           })
-                  //         );
-                  //       })
-                  //       .then(() => {
-                  //         setOpenModal(!openModal);
-                  //       });
-                  //   }}
+                  className=" rounded-xl bg-green-300 text-white text-lg font-bold h-14 w-40"
+                  onClick={() => {
+                    addTocart(
+                      _product.id,
+                      _product.name,
+                      _product.thumbnail,
+                      _product.price,
+                      quantity
+                    );
+                  }}
                 >
                   Add to Cart
                 </button>
+
                 <Link to="/cart">
                   <button
                     className="btn rounded-xl bg-black text-white text-lg font-bold h-14 w-40"
@@ -288,6 +265,7 @@ const SIngleProduct = () => {
       <div className="lg:flex hidden">
         <ProductList2 />
       </div>
+      <button onClick={power}>POWER</button>
     </div>
   );
 };

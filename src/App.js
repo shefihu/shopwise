@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import ScrolltoTop from "./components/ScrolltoTop";
 import AllProducts from "./page/AllProducts";
 import Callbac from "./page/Callbac";
+import Cart from "./page/Cart";
 import Home from "./page/Home";
 import SearchResults from "./page/SearchResults";
 import SIngleProduct from "./page/SIngleProduct";
@@ -14,6 +15,13 @@ function App() {
   const Authed = useSelector((state) => state.auth);
   const RequireAuth = ({ children }) => {
     return Authed.currentUser ? children : <Navigate to="/login" />;
+  };
+  const RequireAuthCart = ({ children }) => {
+    return Authed.currentUser ? (
+      <Navigate to="/cart" />
+    ) : (
+      <Navigate to="/login" />
+    );
   };
   return (
     <div className="App  bg-gray-200">
@@ -27,6 +35,14 @@ function App() {
         <Route path="products" element={<AllProducts />} />
         <Route path="searched" element={<SearchResults />} />
         <Route path="product" element={<SIngleProduct />} />
+        <Route
+          path="cart"
+          element={
+            <RequireAuthCart>
+              <Cart />
+            </RequireAuthCart>
+          }
+        />
       </Routes>
       <ScrolltoTop />
     </div>

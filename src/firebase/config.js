@@ -198,6 +198,18 @@ export const signingOut = async () => {
     }
   );
 };
+export const UpdateCart = async (newState, userId) => {
+  const data = {
+    cart: newState,
+  };
+  try {
+    const docRef = await setDoc(doc(db, "users", `${userId}`), data, {
+      merge: true,
+    });
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
 
 export { auth };
 export { provider };
