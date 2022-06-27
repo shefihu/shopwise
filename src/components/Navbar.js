@@ -187,7 +187,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="/contact"
                       className="dark:text-white text-xl font-bold text-base text-gray-800   hover:text-green-300"
                     >
                       Contact
@@ -616,7 +616,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="/contact"
                       className="dark:text-white flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"
                     >
                       Contact

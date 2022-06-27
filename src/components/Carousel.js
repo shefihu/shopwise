@@ -7,7 +7,7 @@ const Carousel = () => {
         id="carouselExampleIndicators"
         className="carousel slide "
         data-bs-ride="true"
-        style={{ backgroundColor: "orange" }}
+        // style={{ backgroundColor: "orange" }}
       >
         <div className="carousel-indicators">
           <button

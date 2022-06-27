@@ -5,7 +5,7 @@ const Hero3 = () => {
     <div>
       <div className="bg-gray-200">
         <div className="lg:container md:w-full   mx-auto py-9 md:py-12 lg:py-24">
-          <div className="relative md:bg-red-300   mx-4">
+          <div className="relative    mx-4">
             <img
               src="https://images.unsplash.com/photo-1647503380147-e075b24f4cbe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
               alt="A work table with house plants"

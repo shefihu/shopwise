@@ -2,11 +2,13 @@ import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ScrolltoTop from "./components/ScrolltoTop";
 import AllProducts from "./page/AllProducts";
 import Callbac from "./page/Callbac";
 import Cart from "./page/Cart";
+import ContactMe from "./page/ContactMe";
 import Home from "./page/Home";
 import SearchResults from "./page/SearchResults";
 import SIngleProduct from "./page/SIngleProduct";
@@ -28,6 +30,7 @@ function App() {
         <Route path="products" element={<AllProducts />} />
         <Route path="searched" element={<SearchResults />} />
         <Route path="product" element={<SIngleProduct />} />
+        <Route path="contact" element={<ContactMe />} />
         <Route
           path="cart"
           element={
@@ -38,6 +41,7 @@ function App() {
         />
       </Routes>
       <ScrolltoTop />
+      <Footer />
     </div>
   );
 }

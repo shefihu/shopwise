@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import AboutProduct from "../components/AboutProduct";
+import Modal2 from "../components/Modal2";
 import ProductList2 from "../components/ProductList2";
 import REviews from "../components/REviews";
 import { product } from "../data/Products";
 import { addToFav } from "../store/actions/cartaction";
-
+import SuccessImage from "../assets/svg/success.svg";
+import Modal from "../components/Modal";
+import { motion } from "framer-motion";
 const SIngleProduct = () => {
   const location = useLocation();
   const search = location.search;
@@ -14,6 +17,7 @@ const SIngleProduct = () => {
   //   const picture = new URLSearchParams(search).get("image");
   const _product = product.find((x) => x.id === id);
   const [quantity, setQuantity] = useState(1);
+  const [openModal, setOpenModal] = useState(false);
   const dispatch = useDispatch();
   const Increment = () => {
     setQuantity(quantity + 1);
@@ -28,7 +32,9 @@ const SIngleProduct = () => {
   };
   const addTocart = (id, name, photo, price) => {
     // console.log("power");
-    dispatch(addToFav(id, name, photo, price, quantity));
+    dispatch(addToFav(id, name, photo, price, quantity)).then(() => {
+      setOpenModal(!openModal);
+    });
   };
   const power = () => {
     console.log("power");
@@ -36,6 +42,7 @@ const SIngleProduct = () => {
   return (
     <div>
       <section className="hidden w-screen xl:flex lg:flex">
+        {/* <Modal /> */}
         <div className="container  h-1/2  ">
           <div className="flex w-full bg-slate-200 justify-between mt-10  ">
             <img
@@ -95,7 +102,8 @@ const SIngleProduct = () => {
                 </div>
               </div>
               <div className="flex gap-6">
-                <button
+                <motion.button
+                  layout
                   className=" rounded-xl bg-green-300 text-white text-lg font-bold h-14 w-40"
                   onClick={() => {
                     addTocart(
@@ -108,7 +116,7 @@ const SIngleProduct = () => {
                   }}
                 >
                   Add to Cart
-                </button>
+                </motion.button>
                 <Link to="/cart">
                   <button
                     className="btn rounded-xl bg-black text-white text-lg font-bold h-14 w-40"
@@ -266,6 +274,37 @@ const SIngleProduct = () => {
         <ProductList2 />
       </div>
       <button onClick={power}>POWER</button>
+      {openModal && (
+        <>
+          {" "}
+          <Modal>
+            <motion.div className="  w-96 mx-auto md:w-[36rem] flex flex-col items-center gap-8">
+              <motion.button
+                className="w-full  font-bold flex justify-end"
+                onClick={() => setOpenModal(false)}
+                // whileHover={{ scale: 1.2 }}
+              >
+                X
+              </motion.button>
+              <img src={SuccessImage} alt="success" height="100" />
+              <p className="font-bold">Item Added to Cart</p>
+              <div className="flex justify-center w-full gap-4">
+                <Link to="/products" passHref>
+                  <button className="w-full underline-offset-4 underline">
+                    Continue Shopping
+                  </button>
+                </Link>
+
+                <Link to="/cart" passHref>
+                  <button className="btn rounded-xl w-full">
+                    Proceed to Checkout
+                  </button>
+                </Link>
+              </div>
+            </motion.div>
+          </Modal>
+        </>
+      )}
     </div>
   );
 };
