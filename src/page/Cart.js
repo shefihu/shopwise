@@ -201,9 +201,6 @@ const Cart = () => {
                     <button className="mx-4 h-10 w-44 border rounded-md text-white font-bold text-base bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-indigo-800">
                       Go Shopping
                     </button>{" "}
-                    <div className="mt-10">
-                      <h1 className="font-bold text-4xl">Cart</h1>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -216,13 +213,13 @@ const Cart = () => {
               <div className="w-full    h-full  flex flex-col justify-between  ">
                 {cart.map((cartItem) => {
                   return (
-                    <div className="flex mt-20 items-center justify-between">
+                    <div className="flex  mt-20 items-center justify-between">
                       <div className="w-2">
                         <button
                           onClick={() => {
                             removeFromCart(cartItem.id);
                           }}
-                          className="w-8 h-8 bg-white rounded-full flex justify-center items-center"
+                          className="w-6 h-6  bg-white rounded-full flex justify-center items-center"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -236,21 +233,21 @@ const Cart = () => {
                           </svg>
                         </button>
                       </div>
-                      <div className="w-32 h-24">
+                      <div className="w-24 h-20">
                         <img
                           src={cartItem.photo}
                           alt=""
                           className="w-full h-full rounded-xl object-cover"
                         />
                       </div>
-                      <div className="w-24 ">
-                        <h1 className="font-bold text-xl">{cartItem.name}</h1>
+                      <div className="w-20 ">
+                        <h1 className="font-bold text-lg">{cartItem.name}</h1>
                       </div>
                       <div className="">
-                        <h1 className="text-xl font-bold">{cartItem.price}</h1>
+                        <h1 className="text-lg font-bold">{cartItem.price}</h1>
                       </div>
-                      <div className="w-24">
-                        <div className="flex flex-row gap-6 items-center">
+                      <div className="w-14">
+                        <div className="flex flex-row gap-2 items-center">
                           <button
                             className="rounded-full h-4 w-4 bg-white flex items-center justify-center"
                             onClick={Decrement}
@@ -270,7 +267,7 @@ const Cart = () => {
                   );
                 })}
               </div>
-              <div className="w-full h-96 bg-white  mt-20 rounded-3xl">
+              <div className="w-full h-96 bg-white container  mt-20 rounded-3xl">
                 <div className="w-full container">
                   <h1 className="font-bold text-xl ml-6 mt-3">Order Summary</h1>
                   <div className="w-full  flex flex-col justify-between h-20 mt-10">
