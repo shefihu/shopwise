@@ -11,6 +11,8 @@ import {
   createUserWithEmailAndPassword,
   GithubAuthProvider,
   signOut,
+  updateProfile,
+  updatePassword,
 } from "firebase/auth";
 // Your web app's Firebase configuration
 import { doc, getFirestore, setDoc } from "firebase/firestore";
@@ -205,6 +207,53 @@ export const UpdateCart = async (newState, userId) => {
   try {
     const docRef = await setDoc(doc(db, "users", `${userId}`), data, {
       merge: true,
+    });
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
+export const AddToShippingInfo = async (values, userId) => {
+  const data = {
+    shippingInfo: {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      phoneNumber: values.phoneNumber,
+      address: values.address,
+    },
+  };
+  try {
+    const docRef = await setDoc(doc(db, "users", `${userId}`), data, {
+      merge: true,
+    });
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
+//Reset Password
+export const resetPassword = (newPassword) => {
+  updatePassword(auth.currentUser, newPassword)
+    .then(() => {
+      // Update successful.
+    })
+    .catch((error) => {
+      // An error ocurred
+      // ...
+    });
+};
+
+//Updating Profile
+
+export const AddToProfileInfo = async (values, userId) => {
+  const data = {
+    displayName: values.displayName,
+    email: values.email,
+    phoneNumber: values.phoneNumber,
+    photoURL: values.photoURL,
+  };
+  try {
+    updateProfile(auth.currentUser, data).then(() => {
+      // Profile updated!
+      setDoc(doc(db, "users", `${userId}`), data, { merge: true });
     });
   } catch (e) {
     console.error("Error adding document: ", e);

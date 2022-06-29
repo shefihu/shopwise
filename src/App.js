@@ -10,6 +10,7 @@ import Callbac from "./page/Callbac";
 import Cart from "./page/Cart";
 import ContactMe from "./page/ContactMe";
 import Home from "./page/Home";
+import Profile from "./page/Profile";
 import SearchResults from "./page/SearchResults";
 import SIngleProduct from "./page/SIngleProduct";
 // import auth from "./firebase/utils";
@@ -31,6 +32,7 @@ function App() {
         <Route path="searched" element={<SearchResults />} />
         <Route path="product" element={<SIngleProduct />} />
         <Route path="contact" element={<ContactMe />} />
+        <Route path="profile" element={<Profile />} />
         <Route
           path="cart"
           element={
