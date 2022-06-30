@@ -141,7 +141,8 @@ function ShippingInfo() {
           </span>
         </div>
         <div className="mt-4 mb-8 text-left ">
-          {Authed.currentUser.shippingInfo === undefined ? (
+          {Authed.currentUser.shippingInfo === undefined ||
+          Authed.currentUser.shippingInfo === null ? (
             <p>
               No existing shipping information.
               <br /> Please create one
