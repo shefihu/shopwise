@@ -255,16 +255,16 @@ const Cart = () => {
                         <img
                           src={cartItem.photo}
                           alt=""
-                          className="w-full h-full rounded-xl object-cover"
+                          className="w-full h-full rounded-xl ml-4 object-cover"
                         />
                       </div>
-                      <div className="w-20 ">
+                      <div className="w-20 ml-6">
                         <h1 className="font-bold text-lg">{cartItem.name}</h1>
                       </div>
                       <div className="">
                         <h1 className="text-lg font-bold">{cartItem.price}</h1>
                       </div>
-                      <div className="w-14">
+                      {/* <div className="w-14 ml-2">
                         <div className="flex flex-row gap-2 items-center">
                           <button
                             className="rounded-full h-4 w-4 bg-white flex items-center justify-center"
@@ -280,12 +280,12 @@ const Cart = () => {
                             +
                           </button>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   );
                 })}
               </div>
-              <div className="w-full h-96 bg-white container  mt-20 rounded-3xl">
+              <div className="w-full h-80 bg-white container  mt-20 rounded-3xl">
                 <div className="w-full container">
                   <h1 className="font-bold text-xl ml-6 mt-3">Order Summary</h1>
                   <div className="w-full  flex flex-col justify-between h-20 mt-10">
@@ -306,16 +306,21 @@ const Cart = () => {
                       </h1>
                     </div>
                   </div>
-                  <div className="w-full mt-10">
-                    <h1 className="text-center">
-                      Shipping Info and payment will be seen as soon as you
-                      checkout
-                    </h1>
-                  </div>
+
                   <div className="w-full mt-14 flex justify-center">
                     <motion.button
                       whileHover={{ scale: 1.03 }}
-                      onClick={addTocheckout}
+                      onClick={() => {
+                        addTocheckout(
+                          cart.id,
+                          cart.photo,
+                          cart.name,
+                          cart.price,
+                          quantity,
+                          TotalItems,
+                          TotalPrice
+                        );
+                      }}
                       className="bg-green-400 lg:w-11/12 w-9/12 lg:py-3  py-1 rounded-full text-white font-bold text-xl"
                     >
                       Checkout

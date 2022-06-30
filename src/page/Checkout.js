@@ -101,7 +101,7 @@ const Checkout = () => {
             class="flex flex-col gap-8 items-center justify-center h-fit"
             id="accordion_container"
           >
-            <div
+            {/* <div
               className="w-full bg-white px-4 py-4 rounded-3xl "
               id="1"
               data-accordion="01"
@@ -163,7 +163,7 @@ const Checkout = () => {
                       handleBlur,
                       handleSubmit,
                       isSubmitting,
-                      /* and other goodies */
+                    
                     }) => (
                       <form
                         onSubmit={handleSubmit}
@@ -264,7 +264,7 @@ const Checkout = () => {
                   </Formik>
                 )}
               </div>
-            </div>
+            </div> */}
 
             <div
               className="w-full bg-white rounded-3xl px-4 py-4 "
