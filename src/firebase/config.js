@@ -154,6 +154,9 @@ export const createUserWithEmail = async (email, password) => {
       // Adding to store
       const user = userCredential.user;
       AddToStore(user);
+      if (user) {
+        window.location = "/";
+      }
       // ...
     })
     .catch((error) => {

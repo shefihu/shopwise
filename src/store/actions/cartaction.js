@@ -31,7 +31,8 @@
 import Cookies from "js-cookie";
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cartConstants";
 export const addToFav =
-  (id, name, photo, price, quantity) => async (dispatch, getState) => {
+  (id, name, photo, price, quantity, TotalItems, TotalPrice) =>
+  async (dispatch, getState) => {
     dispatch({
       type: CART_ADD_ITEM,
       payload: {
@@ -40,6 +41,8 @@ export const addToFav =
         photo: photo,
         price: price,
         quantity: quantity,
+        TotalItems: TotalItems,
+        TotalPrice: TotalPrice,
       },
     });
     Cookies.set("favourites", JSON.stringify(getState().favLists.favItems));

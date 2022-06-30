@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { removeFromFavorites } from "../store/actions/cartaction";
+import { addToFav, removeFromFavorites } from "../store/actions/cartaction";
 import robot from "../assets/svg/robot.svg";
 import Modal from "../components/Modal";
 import { motion } from "framer-motion";
+import { addToOrder } from "../store/actions/orderactions";
 const Cart = () => {
   //  const cartItems = Cookies.get("favourites")
   //    ? JSON.parse(Cookies.get("favourites"))
@@ -37,6 +38,16 @@ const Cart = () => {
     dispatch(removeFromFavorites(id));
     navigate("/cart");
   };
+  const addTocheckout = (id, name, photo, price) => {
+    // console.log("power");
+    dispatch(
+      addToOrder(id, name, photo, price, quantity, TotalItems, TotalPrice)
+    ).then(() => {
+      navigate("/checkout");
+    });
+  };
+  const TotalItems = cart.reduce((a, c) => a + Number(c.quantity), 0);
+  const TotalPrice = cart.reduce((a, c) => a + c.price * c.quantity, 0);
   return (
     <div>
       <section
@@ -144,15 +155,11 @@ const Cart = () => {
                   <div className="w-full  flex flex-col justify-between h-20 mt-10">
                     <div className="w-full container justify-between  flex h-8 items-center  ">
                       <h1 className="font-bold text-xl">Total items:</h1>
-                      <h1 className="font-bold text-2xl">
-                        {cart.reduce((a, c) => a + Number(c.quantity), 0)}
-                      </h1>
+                      <h1 className="font-bold text-2xl">{TotalItems}</h1>
                     </div>
                     <div className="w-full container justify-between  flex h-8 items-center  ">
                       <h1 className="font-bold text-xl">Total price:</h1>
-                      <h1 className="font-bold text-2xl">
-                        ₦{cart.reduce((a, c) => a + c.price * c.quantity, 0)}
-                      </h1>
+                      <h1 className="font-bold text-2xl">₦{TotalPrice}</h1>
                     </div>
                   </div>
                   <div className="w-full mt-10">
@@ -164,6 +171,17 @@ const Cart = () => {
                   <div className="w-full mt-14 flex justify-center">
                     <motion.button
                       whileHover={{ scale: 1.03 }}
+                      onClick={() => {
+                        addTocheckout(
+                          cart.id,
+                          cart.photo,
+                          cart.name,
+                          cart.price,
+                          quantity,
+                          TotalItems,
+                          TotalPrice
+                        );
+                      }}
                       className="bg-green-400 w-11/12 py-3 rounded-full text-white font-bold text-xl"
                     >
                       Checkout
@@ -272,15 +290,19 @@ const Cart = () => {
                   <h1 className="font-bold text-xl ml-6 mt-3">Order Summary</h1>
                   <div className="w-full  flex flex-col justify-between h-20 mt-10">
                     <div className="w-full container justify-between  flex h-8 items-center  ">
-                      <h1 className="font-bold text-xl">Total items:</h1>
-                      <h1 className="font-bold text-2xl">
-                        {cart.reduce((a, c) => a + Number(c.quantity), 0)}
+                      <h1 className="font-bold lg:text-xl text-lg">
+                        Total items:
+                      </h1>
+                      <h1 className="font-bold lg:text-2xl text-lg">
+                        {TotalItems}
                       </h1>
                     </div>
                     <div className="w-full container justify-between  flex h-8 items-center  ">
-                      <h1 className="font-bold text-xl">Total price:</h1>
-                      <h1 className="font-bold text-2xl">
-                        ₦{cart.reduce((a, c) => a + c.price * c.quantity, 0)}
+                      <h1 className="font-bold lg:text-xl text-lg">
+                        Total price:
+                      </h1>
+                      <h1 className="font-bold lg:text-2xl text-lg">
+                        ₦{TotalPrice}
                       </h1>
                     </div>
                   </div>
@@ -293,7 +315,8 @@ const Cart = () => {
                   <div className="w-full mt-14 flex justify-center">
                     <motion.button
                       whileHover={{ scale: 1.03 }}
-                      className="bg-green-400 w-11/12 py-3 rounded-full text-white font-bold text-xl"
+                      onClick={addTocheckout}
+                      className="bg-green-400 lg:w-11/12 w-9/12 lg:py-3  py-1 rounded-full text-white font-bold text-xl"
                     >
                       Checkout
                     </motion.button>

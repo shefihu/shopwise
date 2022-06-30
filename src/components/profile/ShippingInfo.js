@@ -8,6 +8,7 @@ import { login } from "../../store/actions/userActions";
 import { doc, onSnapshot } from "firebase/firestore";
 import Modal from "../he/Modal";
 import Modal2 from "../Modal2";
+import { _isUndefined } from "gsap/gsap-core";
 
 export const EditIcon = () => {
   const dispatch = useDispatch();
@@ -140,8 +141,7 @@ function ShippingInfo() {
           </span>
         </div>
         <div className="mt-4 mb-8 text-left ">
-          {Authed.currentUser.shippingInfo === null ||
-          Authed.currentUser.shippingInfo === undefined ? (
+          {Authed.currentUser.shippingInfo === undefined ? (
             <p>
               No existing shipping information.
               <br /> Please create one

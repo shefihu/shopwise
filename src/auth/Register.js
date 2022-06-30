@@ -51,7 +51,7 @@ const Register = () => {
               aria-label="Login to your account"
               className="text-2xl font-extrabold leading-6 text-gray-800"
             >
-              Login to your account
+              Create an account
             </p>
             <p className="text-sm mt-4 font-medium leading-none text-gray-500">
               Already Have an account?{" "}
@@ -155,7 +155,7 @@ const Register = () => {
                     <button
                       type="submit"
                       aria-label="create my account"
-                      className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full"
+                      className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-green-300 border rounded hover:bg-indigo-600 py-4 w-full"
                     >
                       Create my account
                     </button>
