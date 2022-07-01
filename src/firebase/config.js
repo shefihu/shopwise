@@ -65,14 +65,15 @@ export const CreateWithGoogle = () => {
       const user = result.user;
       // ...
       console.log(user);
-      if (user) {
-        window.location = "/";
-      }
+
       console.log("user");
       Cookies.set("userInfo", JSON.stringify(user), {
         expires: 7,
       });
-      AddToStore(user);
+
+      AddToStore(user).then(() => {
+        window.location = "/";
+      });
 
       //logging into state
     })

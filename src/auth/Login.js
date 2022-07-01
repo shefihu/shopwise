@@ -1,4 +1,9 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+} from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import { Formik } from "formik";
 import React, { useState } from "react";
@@ -70,7 +75,15 @@ const Login = () => {
               </span>
             </p>
             <button
-              onClick={CreateWithGoogle}
+              onClick={() => {
+                CreateWithGoogle();
+                // if (getAuth() !== null) {
+                //   window.location = "/";
+                // }
+                // if (auth.onAuthStateChanged) {
+                //   window.location = "/";
+                // }
+              }}
               aria-label="Continue with google"
               // role="button"
               className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10"

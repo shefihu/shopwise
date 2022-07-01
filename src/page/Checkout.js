@@ -10,22 +10,22 @@ import { login } from "../store/actions/userActions";
 
 export const SaveIcon = () => {
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   auth.onAuthStateChanged(async (user) => {
-  //     if (user === null) return;
-  //     // ShowSpinner();
-  //     const userId = user.uid;
-  //     const docSnap = onSnapshot(doc(db, "users", `${userId}`), (doc) => {
-  //       if (doc.data() !== null) {
-  //         dispatch(login(doc.data()));
-  //         // hideSpinner();
-  //       } else {
-  //         console.log("No such document!");
-  //         // hideSpinner();
-  //       }
-  //     });
-  //   });
-  // }, [dispatch]);
+  useEffect(() => {
+    auth.onAuthStateChanged(async (user) => {
+      if (user === null) return;
+      // ShowSpinner();
+      const userId = user.uid;
+      const docSnap = onSnapshot(doc(db, "users", `${userId}`), (doc) => {
+        if (doc.data() !== null) {
+          dispatch(login(doc.data()));
+          // hideSpinner();
+        } else {
+          console.log("No such document!");
+          // hideSpinner();
+        }
+      });
+    });
+  }, [dispatch]);
   return (
     <svg
       width="25"
@@ -82,7 +82,7 @@ function Checkout() {
             class="flex flex-col gap-8 items-center justify-center h-fit"
             id="accordion_container"
           >
-            {/* <div
+            <div
               className="w-full bg-white px-4 py-4 rounded-3xl "
               id="1"
               data-accordion="01"
@@ -108,143 +108,12 @@ function Checkout() {
                     <p>{Authed.currentUser.shippingInfo.address}</p>
                   </span>
                 ) : (
-                  <Formik
-                    initialValues={{
-                      firstName: "",
-                      lastName: "",
-                      phoneNumber: "",
-                      address: "",
-                    }}
-                    validate={(values) => {
-                      const errors = {};
-                      if (!values.firstName) {
-                        errors.firstName = "Required";
-                      }
-                      if (!values.lastName) {
-                        errors.lastName = "Required";
-                      }
-                      if (!values.phoneNumber) {
-                        errors.phoneNumber = "Required";
-                      }
-                      if (!values.address) {
-                        errors.address = "Required";
-                      }
-                      return errors;
-                    }}
-                    onSubmit={(values, { setSubmitting }) => {
-                      let userId = Authed.uid;
-                      AddToShippingInfo(values, userId);
-                    }}
-                  >
-                    {({
-                      values,
-                      errors,
-                      touched,
-                      handleChange,
-                      handleBlur,
-                      handleSubmit,
-                      isSubmitting,
-                    }) => (
-                      <form
-                        onSubmit={handleSubmit}
-                        className="flex flex-col w-full mb-12"
-                      >
-                        <div className="flex flex-col lg:flex-row lg:gap-6">
-                          <div className="flex mb-4 flex-col w-full">
-                            <label className="font-bold">First Name</label>
-                            <input
-                              type="text"
-                              name="firstName"
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                              value={values.firstName}
-                              placeholder="John"
-                              className="input"
-                            />
-                            <p className="text-red-600">
-                              {errors.firstName &&
-                                touched.firstName &&
-                                errors.firstName}
-                            </p>
-                          </div>
-                          <div className="flex mb-4 flex-col w-full">
-                            <label className="font-bold">Last Name</label>
-                            <input
-                              type="text"
-                              name="lastName"
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                              value={values.lastName}
-                              placeholder="Doe"
-                              className="input"
-                            />
-                            <p className="text-red-600">
-                              {errors.lastName &&
-                                touched.lastName &&
-                                errors.lastName}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="flex flex-col lg:flex-row lg:gap-6">
-                          <div className="flex mb-4 flex-col w-full">
-                            <label className="font-bold">Address</label>
-                            <textarea
-                              type="text"
-                              name="address"
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                              value={values.address}
-                              placeholder="Enter your shipping Adderess"
-                              className="input h-[8rem] resize-none"
-                            />
-                            <p className="text-red-600">
-                              {errors.address &&
-                                touched.address &&
-                                errors.address}
-                            </p>
-                          </div>
-                          <div className="flex mb-4 flex-col w-full">
-                            <label className="font-bold">Phone Number</label>
-                            <input
-                              type="tel"
-                              name="phoneNumber"
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                              value={values.phoneNumber}
-                              placeholder="+234 000 0000"
-                              className="input"
-                            />
-                            <p className="text-red-600">
-                              {errors.phoneNumber &&
-                                touched.phoneNumber &&
-                                errors.phoneNumber}
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="w-full flex justify-end gap-4">
-                          <button
-                            type="submit"
-                            className="outlined_btn mt-8 flex justify-center items-center gap-2"
-                            disabled={isSubmitting}
-                          >
-                            <SaveIcon />
-                            Save
-                          </button>
-                          <button
-                            type="submit"
-                            className="btn mt-8"
-                            disabled={isSubmitting}
-                          >
-                            Next
-                          </button>
-                        </div>
-                      </form>
-                    )}
-                  </Formik>
+                  <>
+                    <h1>djjdj</h1>
+                  </>
                 )}
               </div>
-            </div> */}
+            </div>
 
             <div
               className="w-full bg-white rounded-3xl px-4 py-4 "

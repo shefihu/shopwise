@@ -15,15 +15,13 @@ export const EditIcon = () => {
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
       if (user === null) return;
-      // ShowSpinner();
+
       const userId = user.uid;
       const docSnap = onSnapshot(doc(db, "users", `${userId}`), (doc) => {
         if (doc.data() !== null) {
           dispatch(login(doc.data()));
-          // hideSpinner();
         } else {
           console.log("No such document!");
-          // hideSpinner();
         }
       });
     });
@@ -159,21 +157,12 @@ function ShippingInfo() {
               <p>{Authed.currentUser.shippingInfo.address}</p>
             </span>
           )}
-          {Authed.currentUser.shippingInfo != null ||
+          {/* {Authed.currentUser.shippingInfo != null ||
             (Authed.currentUser.shippingInfo !== undefined && (
               <>
                 <h1>loading</h1>
               </>
-            ))}
-        </div>
-        <div className="mt-4 mb-8 text-left ">
-          {Authed.currentUser.shippingInfo === undefined ||
-            (Authed.currentUser.shippingInfo === null && (
-              <p>
-                power
-                <br /> Please create one
-              </p>
-            ))}
+            ))} */}
         </div>
       </section>
 

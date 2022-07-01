@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 let initialState = {
   currentUser: Cookies.get("userInfo")
@@ -7,8 +8,11 @@ let initialState = {
 };
 
 const Auth = (state = initialState, action) => {
+  // const navigate = useNavigate();
   switch (action.type) {
     case "login":
+      console.log("data");
+
       return {
         ...state,
         currentUser: action.payload,
