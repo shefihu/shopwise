@@ -28,7 +28,9 @@ const Navbar = () => {
   const cartPage = () => {
     navigate("/cart");
   };
-  const profile = () => [navigate("/profile")];
+  const profile = () => {
+    navigate("/profile");
+  };
   const cart = useSelector((state) => state.favLists.favItems);
   return (
     <div>
