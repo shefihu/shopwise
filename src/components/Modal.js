@@ -37,7 +37,7 @@ const Modal = ({ ref, state, close, children }) => {
                   // animate={{ x: 0 }}
                   layout
                   transition={{ type: "spring", duration: 2, bounce: 0.3 }}
-                  class="relative  w-full lg:w-1/3 bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8  "
+                  class="relative w-[40rem] lg:w-[40rem]   2xl:w-1/3 xl:w-[40rem] bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8  "
                 >
                   <div class=" w-full px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="sm:flex sm:items-start">

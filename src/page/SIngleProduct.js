@@ -41,14 +41,14 @@ const SIngleProduct = () => {
   };
   return (
     <div>
-      <section className="hidden w-screen xl:flex lg:flex">
+      <section className="hidden w-full xl:flex lg:flex">
         {/* <Modal /> */}
-        <div className="container  h-1/2  ">
+        <div className="container w-full  h-1/2  ">
           <div className="flex w-full bg-slate-200 justify-between mt-10  ">
             <img
               src={_product.thumbnail}
               alt=""
-              className=" w-5/12 rounded-2xl object-cover "
+              className=" w-6/12 rounded-2xl object-cover "
               style={{ height: "600px", width: "700px" }}
             />
             <div className="  w-1/2 ml-10 flex justify-around  flex-col ">

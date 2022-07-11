@@ -123,41 +123,19 @@ export const CreateWithGithub = () => {
       // ...
     });
 };
-export const SignInWithGoogle = () => {
-  const provider = new GoogleAuthProvider();
 
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // ...
-      //logging into state
-
-      console.log(user);
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
-};
 export const createUserWithEmail = async (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Adding to store
       const user = userCredential.user;
-      AddToStore(user);
-      if (user) {
+      Cookies.set("userInfo", JSON.stringify(user), {
+        expires: 7,
+      });
+      AddToStore(user).then(() => {
         window.location = "/";
-      }
+      });
+
       // ...
     })
     .catch((error) => {
@@ -176,15 +154,16 @@ export const signInWithEmail = async (email, password) => {
       // const Router = useRouter();
       // Router.back()
 
-      if (user) {
-        window.location = "/";
-      }
       // if (user) {
       //   window.location = "/";
       console.log("user");
       Cookies.set("userInfo", JSON.stringify(user), {
         expires: 7,
       });
+      AddToStore(user).then(() => {
+        window.location = "/";
+      });
+
       // }
     })
     .catch((error) => {

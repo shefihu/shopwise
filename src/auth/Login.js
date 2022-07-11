@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -185,11 +186,19 @@ const Login = () => {
 
                 return errors;
               }}
-              onSubmit={(values, { setSubmitting }) => {
+              onSubmit={async (values, { setSubmitting }) => {
                 const email = values.email;
                 const password = values.password;
-                signInWithEmail(email, password);
-                setLoading(true);
+                // setLoading(true);
+                try {
+                  // setLoading(true);
+                  const response = await signInWithEmail(email, password);
+                  console.log(response, "hfhh");
+                  // setLoading(false);
+                } catch (error) {
+                  console.log(error, "hdhdh");
+                  setLoading(false);
+                }
               }}
             >
               {({
@@ -253,7 +262,7 @@ const Login = () => {
                     </p>
                   </div>
                   <div className="mt-8">
-                    {!loading && (
+                    {!loading ? (
                       <>
                         <button
                           type="submit"
@@ -263,8 +272,7 @@ const Login = () => {
                           Create my account
                         </button>
                       </>
-                    )}{" "}
-                    {loading && (
+                    ) : (
                       <>
                         <button
                           type="submit"
@@ -275,7 +283,7 @@ const Login = () => {
                           <div className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-white dark:border-green-400"></div>
                         </button>
                       </>
-                    )}
+                    )}{" "}
                   </div>
                 </form>
               )}
