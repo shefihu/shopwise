@@ -151,7 +151,7 @@ const SIngleProduct = () => {
         </div>
       </section>
 
-      <section className="lg:hidden md:flex">
+      <section className="lg:hidden md:h-full md:flex">
         <div className="container  h-full  ">
           <div className="flex flex-col justify-between mt-10   ">
             <img
@@ -264,16 +264,16 @@ const SIngleProduct = () => {
           </div>
         </div>
       </section>
-      <div className="lg:flex hidden">
+      <div className="lg:flex  hidden">
         <AboutProduct />
       </div>
       <div>
         <REviews />
       </div>
-      <div className="lg:flex hidden">
+      <div className="lg:flex  hidden">
         <ProductList2 />
       </div>
-      <button onClick={power}>POWER</button>
+
       {openModal && (
         <>
           {" "}

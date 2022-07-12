@@ -171,7 +171,7 @@ const ProductList2 = () => {
         <div className="grid grid-cols-2 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {_products.map((product) => (
             <div className=" bg-white rounded-lg h-48 lg:h-96">
-              <Link key={product.id} to={`/product?id=${product.id}`}>
+              <a key={product.id} href={`/product?id=${product.id}`}>
                 <div className="w-full aspect-w-1 aspect-h-1 bg-white rounded-t-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                   <img
                     src={product.thumbnail}
@@ -192,7 +192,7 @@ const ProductList2 = () => {
                   
                   </button> */}
                 </div>
-              </Link>
+              </a>
               <h3 className="mt-4 lg:py-4 pl-4 text-xs lg:text-sm text-gray-700">
                 {product.name}
               </h3>

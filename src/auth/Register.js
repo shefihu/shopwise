@@ -1,47 +1,12 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
 import { Formik } from "formik";
 import React from "react";
-import {
-  auth,
-  createUserWithEmail,
-  CreateWithGoogle,
-  db,
-  provider,
-  signInWithEmail,
-  SignInWithGoogle,
-} from "../firebase/config";
-
+import { createUserWithEmail } from "../firebase/config";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Register = () => {
-  // const userCollection = collection(db, "users");
-  // class UserService {
-  //   addUser = (newUser) => {
-  //     return addDoc(userCollection, newUser);
-  //   };
-  // }
-  // const signInWithGoogle = (e) => {
-  //   signInWithPopup(auth, provider)
-  //     .then((result) => {
-  //       // This gives you a Google Access Token. You can use it to access the Google API.
-  //       const credential = GoogleAuthProvider.credentialFromResult(result);
-  //       const token = credential.accessToken;
-  //       // The signed-in user info.
-  //       const user = result.user;
-  //       console.log(result);
-  //     })
-  //     .catch((error) => {
-  //       // Handle Errors here.
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       // The email of the user's account used.
-  //       const email = error.customData.email;
-  //       // The AuthCredential type that was used.
-  //       const credential = GoogleAuthProvider.credentialFromError(error);
-  //       // ...
-  //     });
-  // };
   return (
     <div>
+      <ToastContainer />
       <div className="h-screen bg-gray-400 w-full py-16 px-4">
         <div className="flex flex-col items-center justify-center">
           <div className="bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16">

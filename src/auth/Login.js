@@ -1,58 +1,25 @@
-import { async } from "@firebase/util";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithPopup,
-} from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
 import { Formik } from "formik";
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+
 import {
-  auth,
   CreateWithGoogle,
-  db,
   CreateWithGithub,
-  provider,
   signInWithEmail,
-  SignInWithGoogle,
 } from "../firebase/config";
-import isAuthed from "../routes/isAuthed";
-// import isAuthed from "../routes/isAuth";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Cookies from "js-cookie";
 const Login = () => {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  // const userCollection = collection(db, "users");
-  // class UserService {
-  //   addUser = (newUser) => {
-  //     return addDoc(userCollection, newUser);
-  //   };
-  // }
-  // const signInWithGoogle = (e) => {
-  //   signInWithPopup(auth, provider)
-  //     .then((result) => {
-  //       // This gives you a Google Access Token. You can use it to access the Google API.
-  //       const credential = GoogleAuthProvider.credentialFromResult(result);
-  //       const token = credential.accessToken;
-  //       // The signed-in user info.
-  //       const user = result.user;
-  //       console.log(result);
-  //     })
-  //     .catch((error) => {
-  //       // Handle Errors here.
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       // The email of the user's account used.
-  //       const email = error.customData.email;
-  //       // The AuthCredential type that was used.
-  //       const credential = GoogleAuthProvider.credentialFromError(error);
-  //       // ...
-  //     });
-  // };
+  const error = Cookies.get("error");
   return (
     <div>
-      <div className="h-full bg-gray-400 w-full py-16 px-4">
+      <ToastContainer />
+      <div className="h-full md:h-screen bg-gray-400 w-full py-16 px-4">
+        <h1 className="w-full 2xl:text-6xl xl:text-5xl text-white lg:text-4xl md:text-3xl text-3xl font-extrabold text-center">
+          Login here
+        </h1>
         <div className="flex flex-col items-center justify-center">
           <div className="bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16">
             <p
@@ -78,16 +45,10 @@ const Login = () => {
             <button
               onClick={() => {
                 CreateWithGoogle();
-                // if (getAuth() !== null) {
-                //   window.location = "/";
-                // }
-                // if (auth.onAuthStateChanged) {
-                //   window.location = "/";
-                // }
               }}
               aria-label="Continue with google"
               // role="button"
-              className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10"
+              className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 2xl:py-3.5 2xl:px-4 xl:py-3.5 xl:px-4 lg:py-3.5 lg:px-4 py-1 px-2 border rounded-lg border-gray-700 flex items-center w-full mt-10"
             >
               <svg
                 width={19}
@@ -117,7 +78,7 @@ const Login = () => {
                 Continue with Google
               </p>
             </button>
-            <button
+            {/* <button
               aria-label="Continue with github"
               // role="button"
               onClick={CreateWithGithub}
@@ -159,7 +120,7 @@ const Login = () => {
               <p className="text-base font-medium ml-4 text-gray-700">
                 Continue with Twitter
               </p>
-            </button>
+            </button> */}
             <div className="w-full flex items-center justify-between py-5">
               <hr className="w-full bg-gray-400" />
               <p className="text-base font-medium leading-4 px-2.5 text-gray-400">
@@ -186,19 +147,12 @@ const Login = () => {
 
                 return errors;
               }}
-              onSubmit={async (values, { setSubmitting }) => {
+              onSubmit={(values, { setSubmitting }) => {
+                // setLoading(true);
                 const email = values.email;
                 const password = values.password;
-                // setLoading(true);
-                try {
-                  // setLoading(true);
-                  const response = await signInWithEmail(email, password);
-                  console.log(response, "hfhh");
-                  // setLoading(false);
-                } catch (error) {
-                  console.log(error, "hdhdh");
-                  setLoading(false);
-                }
+
+                signInWithEmail(email, password);
               }}
             >
               {({
@@ -266,8 +220,10 @@ const Login = () => {
                       <>
                         <button
                           type="submit"
+                          // disabled={isSubmitting}
+
                           aria-label="create my account"
-                          className="focus:ring-2 focus:ring-offset-2 focus:ring-greem-700 text-sm font-semibold leading-none text-white focus:outline-none bg-green-400 border rounded hover:bg-green-600 py-4 w-full"
+                          className="focus:ring-2 focus:ring-offset-2 focus:ring-greem-700 text-sm font-semibold leading-none text-white focus:outline-none bg-green-400 border py-2 rounded hover:bg-green-600 2xl:py-4 w-full"
                         >
                           Create my account
                         </button>
@@ -278,7 +234,7 @@ const Login = () => {
                           type="submit"
                           aria-label="create my account"
                           disabled
-                          className="focus:ring-2 flex justify-center focus:ring-offset-2 focus:ring-green-700 text-sm font-semibold leading-none text-white focus:outline-none bg-green-400 border rounded hover:bg-green-600 py-4 w-full"
+                          className="focus:ring-2 flex justify-center focus:ring-offset-2 focus:ring-green-700 text-sm font-semibold leading-none text-white focus:outline-none bg-green-400 border rounded py-1 hover:bg-green-600 2xl:py-4 w-full"
                         >
                           <div className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-white dark:border-green-400"></div>
                         </button>

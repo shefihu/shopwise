@@ -17,6 +17,8 @@ import {
 // Your web app's Firebase configuration
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useState } from "react";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAUd-KCUeVkDviVtFEBlM-ZMo_KJaL5sFc",
@@ -141,6 +143,10 @@ export const createUserWithEmail = async (email, password) => {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      Cookies.set("error", JSON.stringify(errorCode), {
+        expires: 7,
+      });
+      toast.error(errorMessage);
 
       // ..
     });
@@ -169,8 +175,12 @@ export const signInWithEmail = async (email, password) => {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      // ..
+      // console.log(errorMessage, "jdjdj");
       // OpenUp();
+      Cookies.set("error", JSON.stringify(errorCode), {
+        expires: 7,
+      });
+      toast.error(errorMessage);
     });
 };
 export const signingOut = async () => {

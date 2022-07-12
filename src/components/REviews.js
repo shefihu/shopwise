@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { product } from "../data/Products";
+import AboutProduct from "./AboutProduct";
 
 const REviews = () => {
   const location = useLocation();
@@ -112,7 +113,7 @@ const REviews = () => {
             role="tabpanel"
             aria-labelledby="tabs-home-tabFill"
           >
-            Tab 1 content fill
+            <AboutProduct />
           </div>
           <div
             class="tab-pane fade"

@@ -30,6 +30,7 @@ const Navbar = () => {
   };
   const profile = () => {
     navigate("/profile");
+    setShowMenu(false);
   };
   const home = () => {
     navigate("/");
