@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 import { gaming, product } from "../data/Products";
-
+import Slider, { Range } from "rc-slider";
+import "rc-slider/assets/index.css";
+import PriceRangeSlider from "../components/PriceRangeSlider";
+import { OpenFilterNot } from "../animations/filter";
 const AllProducts = () => {
-  const [filter, setFilter] = useState();
+  const [filterbox, setFilterbox] = useState(false);
+  const [price, setPrice] = useState([1, 40000]);
   const [pageNumber, setPageNumber] = useState(0);
   const productsPerPage = 8;
   const pagesVisited = pageNumber * productsPerPage;
@@ -18,22 +22,52 @@ const AllProducts = () => {
     setPageNumber(selected);
   };
   const prices = product.map((y) => y.price);
-
+  console.log(price);
   console.log(prices);
   const moreforty = () => {
-    if (product.filter((x) => x.price > 40000)) {
-    }
+    setFilterbox(true);
+    setPrice(prices);
   };
-  console.log(filter);
-  // useEffect(() => {
-  //   moreforty();
-  // }, []);
+  console.log(filterbox);
+
+  const [productArray, setProductArray] = useState(displayProducts);
+
+  const [thumb, setThumb] = useState({
+    lower: 10000,
+    upper: 70000,
+  });
+
+  const filtering = () => {
+    const LowerThumb = document
+      .querySelector(".horizontal-slider")
+      .childNodes[3].getAttribute("aria-valueNow");
+    const UpperThumb = document
+      .querySelector(".horizontal-slider")
+      .childNodes[4].getAttribute("aria-valueNow");
+
+    setThumb({
+      lower: Number(LowerThumb),
+      upper: Number(UpperThumb),
+    });
+  };
+
+  useEffect(() => {
+    const filteredProducts = product.filter((product) => {
+      if (
+        product.sellingPrice >= thumb.lower &&
+        product.sellingPrice <= thumb.upper
+      ) {
+        return displayProducts;
+      }
+    });
+    setProductArray(filteredProducts);
+  }, [thumb]);
   return (
     <div>
       <div className="h-full container pb-20">
         <div className="lg:h-40 h-32  flex items-center justify-between">
           <h1 className="lg:text-4xl text-sm font-bold ">All Products</h1>
-          <div
+          {/* <div
             onClick={moreforty}
             className="border-2 flex items-center justify-between border-green-300 w-20 h-10 lg:w-40 lg:h-14 rounded-xl cursor-pointer "
           >
@@ -48,7 +82,33 @@ const AllProducts = () => {
             >
               <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z" />
             </svg>
-          </div>
+            {filterbox && (
+              <>
+                {" "}
+                <div className="w-80 bg-white rounded-xl h-40 absolute mt-60  mr-40">
+                  <PriceRangeSlider thumb={thumb} />
+                  <button
+                    className=" py-2 px-6 mr-2 float-right rounded-xl bg-green-300 mt-4"
+                    onClick={() => {
+                      filtering();
+                      // OpenFilterNot();
+                      // filter();
+                      setFilterbox(false);
+                    }}
+                  >
+                    Apply
+                  </button>
+                  <button
+                    onClick={() => {
+                      setFilterbox(false);
+                    }}
+                  >
+                    cancel
+                  </button>
+                </div>
+              </>
+            )}
+          </div> */}
         </div>
         <div className="grid grid-cols-2 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {displayProducts.map((product) => (

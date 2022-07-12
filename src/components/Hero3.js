@@ -70,14 +70,12 @@ const Hero3 = () => {
                         <div className="w-full  overflow-auto h-36 absolute mt-[3.7rem] bg-white">
                           {handleSearch().map((product) => {
                             return (
-                              <div
-                                onClick={() => {
-                                  navigate(`/product?id=${product.id}`);
-                                }}
-                                className="py-2 hover:bg-gray-100"
+                              <a
+                                href={`/product?id=${product.id}`}
+                                className="py-2 flex flex-col hover:bg-gray-100"
                               >
-                                <h1>{product.name}</h1>
-                              </div>
+                                {product.name}
+                              </a>
                             );
                           })}
                         </div>
