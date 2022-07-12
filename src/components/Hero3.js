@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { product } from "../data/Products";
 
 const Hero3 = () => {
+  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
+  const [searchResults, setSearchResults] = useState(false);
+  const handleSearch = () => {
+    return product.filter((product) =>
+      product.name.toLowerCase().includes(search)
+    );
+  };
   return (
     <div>
       <div className="bg-gray-200">
@@ -25,8 +35,62 @@ const Hero3 = () => {
               style={{ width: "500px", height: "380px" }}
             />
 
-            <div className="absolute z-10 top-0 left-0 mx-4 sm:mx-0 mt-36 sm:mt-0 sm:py-20 md:py-28 lg:py-20 xl:py-28 sm:pl-14 flex flex-col sm:justify-start items-start">
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-semibold text-white sm:w-8/12">
+            <div className="absolute w-full z-10 top-0 left-0 mx-4 sm:mx-0 mt-36 sm:mt-0 sm:py-20 md:py-28 lg:py-20 xl:py-28 sm:pl-14 flex flex-col sm:justify-start items-start">
+              <div class="2xl:flex w-full justify-center">
+                <div class="mb-3 xl:w-[40rem] lg:w-[35rem] w-[15rem] 2xl:w-[49rem]">
+                  <div class="input-group relative flex flex-wrap items-stretch w-full mb-4">
+                    <input
+                      type="search"
+                      class="form-control relative flex-auto min-w-0 block w-full px-3 2xl:py-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                      placeholder="Search"
+                      aria-label="Search"
+                      // value={search}
+                      // name="search"
+                      aria-describedby="button-addon3"
+                      onChange={(e) => {
+                        setSearch(e.target.value);
+
+                        if (e.target.value === "") {
+                          setSearchResults(false);
+                        } else {
+                          setSearchResults(true);
+                        }
+                      }}
+                      // onClick={() => setSearchResults(true)}
+                    />
+                    {/* <button
+                      class="btn inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                      type="button"
+                      id="button-addon3"
+                    >
+                      Search
+                    </button> */}
+                    {searchResults ? (
+                      <>
+                        <div className="w-full  overflow-auto h-36 absolute mt-[3.7rem] bg-white">
+                          {handleSearch().map((product) => {
+                            return (
+                              <div
+                                onClick={() => {
+                                  navigate(`/product?id=${product.id}`);
+                                }}
+                                className="py-2 hover:bg-gray-100"
+                              >
+                                <h1>{product.name}</h1>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div></div>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <h1 className="text-2xl  lg:text-6xl font-semibold text-white sm:w-8/12">
                 The Iphone 13 is Here
               </h1>
               <p className="text-base leading-normal text-gray-200 mt-4 sm:mt-5 sm:w-5/12">

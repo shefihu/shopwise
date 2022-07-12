@@ -31,6 +31,9 @@ const Navbar = () => {
   const profile = () => {
     navigate("/profile");
   };
+  const home = () => {
+    navigate("/");
+  };
   const cart = useSelector((state) => state.favLists.favItems);
   return (
     <div>
@@ -47,6 +50,7 @@ const Navbar = () => {
                 <h1
                   className="md:w-2/12 cursor-pointer font-extrabold text-4xl text-gray-800 dark:text-white"
                   aria-label="shopAlon."
+                  onClick={home}
                 >
                   shopwise.
                   {/* <svg
