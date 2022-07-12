@@ -430,29 +430,37 @@ const Navbar = () => {
                     />
                   </svg>
                 </button>
-                {Authed.currentUser?.photoURL == null ? (
+                {Authed.currentUser === null ? (
                   <>
-                    <img
-                      className="h-6 w-6"
-                      src={EmptyImage}
-                      onClick={profile}
-                      alt="yeah"
-                    />
+                    <div></div>
                   </>
                 ) : (
                   <>
-                    <div className="rounded-full">
-                      {/* <Suspense>
+                    {Authed.currentUser?.photoURL == null ? (
+                      <>
+                        <img
+                          className="h-6 w-6"
+                          src={EmptyImage}
+                          onClick={profile}
+                          alt="yeah"
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <div className="rounded-full">
+                          {/* <Suspense>
                                 <MyImageComponent />
                               </Suspense> */}
-                      <img
-                        className="w-6 h-6 rounded-full"
-                        src={Authed.currentUser.photoURL}
-                        alt="rr"
-                        onClick={profile}
-                      />
-                      {/* <h1>{Authed.currentUser.photoURL}</h1> */}
-                    </div>
+                          <img
+                            className="w-6 h-6 rounded-full"
+                            src={Authed.currentUser.photoURL}
+                            alt="rr"
+                            onClick={profile}
+                          />
+                          {/* <h1>{Authed.currentUser.photoURL}</h1> */}
+                        </div>
+                      </>
+                    )}
                   </>
                 )}
               </div>

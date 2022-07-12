@@ -82,7 +82,7 @@ function App() {
         <Route path="searched" element={<SearchResults />} />
         <Route path="product" element={<SIngleProduct />} />
         <Route path="contact" element={<ContactMe />} />
-        <Route path="profile" element={<Profile />} />
+        {/* <Route path="profile" element={<Profile />} /> */}
         <Route
           path="cart"
           element={
