@@ -9,23 +9,6 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { login } from "../store/actions/userActions";
 
 export const SaveIcon = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    auth.onAuthStateChanged(async (user) => {
-      if (user === null) return;
-      // ShowSpinner();
-      const userId = user.uid;
-      const docSnap = onSnapshot(doc(db, "users", `${userId}`), (doc) => {
-        if (doc.data() !== null) {
-          dispatch(login(doc.data()));
-          // hideSpinner();
-        } else {
-          console.log("No such document!");
-          // hideSpinner();
-        }
-      });
-    });
-  }, [dispatch]);
   return (
     <svg
       width="25"
@@ -71,7 +54,7 @@ function Checkout() {
     activeCard.classList.toggle("mt-8");
   };
   const Authed = useSelector((state) => state.auth);
-
+  // console.log(Authed.currentUser.shippingInfo.firstName);
   console.log(Authed);
 
   return (
@@ -98,20 +81,31 @@ function Checkout() {
               </div>
 
               <div className="h-fit opacity-1 mt-8 content" id="content-1">
-                {Authed.shippingInfo !== undefined ? (
-                  <span>
-                    <p>
-                      {Authed.currentUser.shippingInfo.firstName}{" "}
-                      {Authed.currentUser.shippingInfo.lastName}
-                    </p>
-                    <p>{Authed.currentUser.shippingInfo.phoneNumber}</p>
-                    <p>{Authed.currentUser.shippingInfo.address}</p>
-                  </span>
-                ) : (
-                  <>
-                    <h1>djjdj</h1>
-                  </>
+                {Authed.currentUser.shippingInfo === undefined && (
+                  <div>
+                    <div className="w-10 h-10 border-4 border-dashed rounded-full animate-spin border-green-400"></div>
+                  </div>
                 )}
+                {Authed.currentUser.shippingInfo === undefined ||
+                  (Authed.currentUser.shippingInfo === null && (
+                    <div>
+                      <p>
+                        No exisiting shipping info, please create one in your
+                        profile
+                      </p>
+                    </div>
+                  ))}
+                {Authed.currentUser.shippingInfo === undefined ||
+                  (Authed.currentUser.shippingInfo !== null && (
+                    <span>
+                      <p>
+                        {Authed.currentUser.shippingInfo.firstName}{" "}
+                        {Authed.currentUser.shippingInfo.lastName}
+                      </p>
+                      <p>{Authed.currentUser.shippingInfo.phoneNumber}</p>
+                      <p>{Authed.currentUser.shippingInfo.address}</p>
+                    </span>
+                  ))}
               </div>
             </div>
 

@@ -48,7 +48,7 @@ const Hero3 = () => {
                       // name="search"
                       aria-describedby="button-addon3"
                       onChange={(e) => {
-                        setSearch(e.target.value);
+                        setSearch(e.target.value.toLowerCase());
 
                         if (e.target.value === "") {
                           setSearchResults(false);

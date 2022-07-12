@@ -291,7 +291,7 @@ function ProfileInfo() {
                           className="input"
                         />
                       </div>
-                      <div className="flex mb-4 flex-col w-full relative">
+                      {/* <div className="flex mb-4 flex-col w-full relative">
                         <label className="font-bold">
                           Upload Profile Picture
                         </label>
@@ -308,7 +308,7 @@ function ProfileInfo() {
                           placeholder="select a picture"
                           className="h-20 z-[51] opacity-0"
                         />
-                      </div>
+                      </div> */}
                     </div>
 
                     <div className="w-full flex justify-end gap-4">

@@ -187,18 +187,20 @@ const Navbar = () => {
                     {console.log(Authed)}
                     {Authed.currentUser === null ? (
                       <>
-                        <button
-                          onClick={RegisterPage}
-                          className="w-24 bg-green-300 text-white font-bold h-10 rounded-2xl "
+                        <a
+                          // onClick={RegisterPage}
+                          href="/register"
+                          className="w-24 bg-green-300 text-white font-bold h-10 flex justify-center items-center rounded-2xl "
                         >
                           Sign Up
-                        </button>
-                        <button
-                          onClick={LoginPage}
-                          className="w-24 bg-green-300 text-white font-bold h-10 rounded-2xl "
+                        </a>
+                        <a
+                          // onClick={LoginPage}
+                          href="/login"
+                          className="w-24 bg-green-300 text-white font-bold h-10 flex justify-center items-center rounded-2xl "
                         >
                           Sign In
-                        </button>
+                        </a>
                       </>
                     ) : (
                       <>
@@ -571,22 +573,24 @@ const Navbar = () => {
                           className="dark:text-white text-gray-800 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
                         >
                           <div>
-                            <button
-                              onClick={RegisterPage}
-                              className="w-60 bg-green-300 text-white font-bold h-10 rounded-3xl"
+                            <a
+                              // onClick={RegisterPage}
+                              href="/register"
+                              className="w-60 bg-green-300 text-white font-bold h-10 flex justify-center items-center rounded-3xl"
                             >
                               Sign Up
-                            </button>
+                            </a>
                           </div>
                         </a>
                       </li>
                       <li>
-                        <button
-                          onClick={LoginPage}
-                          className="w-60 bg-green-300 text-white font-bold h-10 rounded-3xl"
+                        <a
+                          // onClick={LoginPage}
+                          href="/login"
+                          className="w-60 bg-green-300 text-white font-bold h-10 flex justify-center items-center rounded-3xl"
                         >
                           Sign In
-                        </button>
+                        </a>
                       </li>
                     </ul>
                   </>

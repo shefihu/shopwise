@@ -25,6 +25,21 @@ function App() {
     return Authed.currentUser ? children : <Navigate to="/login" />;
   };
   const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  useEffect(() => {
+    auth.onAuthStateChanged(async (user) => {
+      if (user === null) return;
+
+      const userId = user.uid;
+      const docSnap = onSnapshot(doc(db, "users", `${userId}`), (doc) => {
+        if (doc.data() !== null) {
+          dispatch(login(doc.data()));
+        } else {
+          console.log("No such document!");
+        }
+      });
+    });
+  }, [dispatch]);
   // useEffect(() => {
   //   auth.onAuthStateChanged(async (user) => {
   //     if (user === null) return;

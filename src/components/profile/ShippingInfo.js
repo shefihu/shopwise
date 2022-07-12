@@ -11,22 +11,6 @@ import Modal2 from "../Modal2";
 import { _isUndefined } from "gsap/gsap-core";
 
 export const EditIcon = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    auth.onAuthStateChanged(async (user) => {
-      if (user === null) return;
-
-      const userId = user.uid;
-      const docSnap = onSnapshot(doc(db, "users", `${userId}`), (doc) => {
-        if (doc.data() !== null) {
-          dispatch(login(doc.data()));
-        } else {
-          console.log("No such document!");
-        }
-      });
-    });
-  }, [dispatch]);
-
   return (
     <svg
       width="25"
@@ -139,24 +123,29 @@ function ShippingInfo() {
           </span>
         </div>
         <div className="mt-4 mb-8 text-left ">
-          {Authed.currentUser.shippingInfo === undefined ||
-          Authed.currentUser.shippingInfo === null ? (
+          {Authed.currentUser.shippingInfo === undefined && (
             <div>
-              <p>
-                No existing shipping information
-                <br /> Please create one
-              </p>
+              <div className="w-10 h-10 border-4 border-dashed rounded-full animate-spin border-green-400"></div>
             </div>
-          ) : (
-            <span>
-              <p>
-                {Authed.currentUser.shippingInfo.firstName}{" "}
-                {Authed.currentUser.shippingInfo.lastName}
-              </p>
-              <p>{Authed.currentUser.shippingInfo.phoneNumber}</p>
-              <p>{Authed.currentUser.shippingInfo.address}</p>
-            </span>
           )}
+          {Authed.currentUser.shippingInfo === undefined ||
+            (Authed.currentUser.shippingInfo === null && (
+              <div>
+                <p>No exisiting shipping info, please create one</p>
+              </div>
+            ))}
+          {Authed.currentUser.shippingInfo === undefined ||
+            (Authed.currentUser.shippingInfo !== null && (
+              <span>
+                <p>
+                  {Authed.currentUser.shippingInfo.firstName}{" "}
+                  {Authed.currentUser.shippingInfo.lastName}
+                </p>
+                <p>{Authed.currentUser.shippingInfo.phoneNumber}</p>
+                <p>{Authed.currentUser.shippingInfo.address}</p>
+              </span>
+            ))}
+
           {/* {Authed.currentUser.shippingInfo != null ||
             (Authed.currentUser.shippingInfo !== undefined && (
               <>
