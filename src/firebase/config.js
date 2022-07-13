@@ -193,6 +193,7 @@ export const signingOut = async () => {
     }
   );
 };
+
 export const UpdateCart = async (newState, userId) => {
   const data = {
     cart: newState,
