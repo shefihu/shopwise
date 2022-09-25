@@ -5,11 +5,7 @@ export const orderReducer = (state = { orderItems: [] }, action) => {
     case ADD_TOTAL_ITEMS: {
       const item = action.payload;
       const existItem = state.orderItems.find((x) => x.id === item.id);
-      const UploadCart = (newState) => {
-        // const Authed = useSelector((state) => state.auth);
-        // let AuthState = useSelector((state) => state.auth);
-        // UpdateCart(newState, Authed.currentUser.currentUser.uid);
-      };
+  
       if (existItem) {
         let newState = {
           ...state,

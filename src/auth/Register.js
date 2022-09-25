@@ -20,15 +20,15 @@ const Register = () => {
             </p>
             <p className="text-sm mt-4 font-medium leading-none text-gray-500">
               Already Have an account?{" "}
-              <span
+              <a
+                href="/login"
                 tabIndex={0}
-                role="link"
                 aria-label="Sign up here"
                 className="text-sm font-medium leading-none underline text-gray-800 cursor-pointer"
               >
                 {" "}
                 Login here
-              </span>
+              </a>
             </p>
 
             <Formik

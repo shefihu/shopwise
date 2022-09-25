@@ -80,9 +80,12 @@ const Cart = () => {
                     <p className="px-4 pb-10 text-base leading-none text-center text-gray-600">
                       Your Cart is Empty
                     </p>
-                    <button className="mx-4 h-10 w-44 border rounded-md text-white font-bold text-base bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-indigo-800">
+                    <a
+                      href="/products"
+                      className="mx-4 h-10 w-44 border flex justify-center items-center rounded-md text-white font-bold text-base bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-indigo-800"
+                    >
                       Go Shopping
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>

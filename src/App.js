@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ScrolltoTop from "./components/ScrolltoTop";
 import { auth, db } from "./firebase/config";
+import AboutMe from "./page/AboutMe";
 import AllProducts from "./page/AllProducts";
 import Callbac from "./page/Callbac";
 import Cart from "./page/Cart";
@@ -67,6 +68,7 @@ function App() {
         <Route path="searched" element={<SearchResults />} />
         <Route path="product" element={<SIngleProduct />} />
         <Route path="contact" element={<ContactMe />} />
+        <Route path="about" element={<AboutMe />} />
         {/* <Route path="profile" element={<Profile />} /> */}
         <Route
           path="cart"

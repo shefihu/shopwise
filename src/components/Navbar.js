@@ -1,5 +1,4 @@
 import React, { Suspense, useState } from "react";
-import { Img, useImage } from "react-image";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signingOut } from "../firebase/config";
@@ -66,10 +65,10 @@ const Navbar = () => {
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="/about"
                       className=" text-base text-gray-800 text-xl font-bold  hover:text-green-300"
                     >
-                      Mobile Phones
+                      About Me
                     </a>
                   </li>
                   <li>

@@ -16,7 +16,7 @@ const Login = () => {
   return (
     <div>
       <ToastContainer />
-      <div className="h-full md:h-screen bg-gray-400 w-full py-16 px-4">
+      <div className="h-full md:h-[100vh] xl:h-[140vh] 2xl:h-[100vh] bg-gray-400 w-full py-16 px-4">
         <h1 className="w-full 2xl:text-6xl xl:text-5xl text-white lg:text-4xl md:text-3xl text-3xl font-extrabold text-center">
           Login here
         </h1>
@@ -32,15 +32,16 @@ const Login = () => {
             </p>
             <p className="text-sm mt-4 font-medium leading-none text-gray-500">
               Dont have account?{" "}
-              <span
+              <a
+                href="/register"
                 tabIndex={0}
-                role="link"
-                aria-label="Sign up here"
+                // role="link"
+                // aria-label="Sign up here"
                 className="text-sm font-medium leading-none underline text-gray-800 cursor-pointer"
               >
                 {" "}
                 Sign up here
-              </span>
+              </a>
             </p>
             <button
               onClick={() => {
@@ -225,7 +226,7 @@ const Login = () => {
                           aria-label="create my account"
                           className="focus:ring-2 focus:ring-offset-2 focus:ring-greem-700 text-sm font-semibold leading-none text-white focus:outline-none bg-green-400 border py-2 rounded hover:bg-green-600 2xl:py-4 w-full"
                         >
-                          Create my account
+                          Login
                         </button>
                       </>
                     ) : (
